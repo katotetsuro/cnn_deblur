@@ -43,7 +43,6 @@ def psnr(pred, truth):
     mse = F.clip(mse, 1e-8, 1e+8)
     max_i = F.max(truth.reshape(batch_size, -1), axis=1)
     max_i = F.clip(max_i, 1e-8, 1e+8)
-    print(mse, max_i)
     return 20 * F.log10(max_i) - 10 * F.log10(mse)
 
 
