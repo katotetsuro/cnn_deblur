@@ -117,7 +117,7 @@ def main():
     # Reduce the learning rate by half every 25 epochs.
     lr_drop_epoch = [int(args.epoch*0.5), int(args.epoch*0.75)]
     lr_drop_ratio = 0.1
-    print(f'lr schedule: {lr_drop_ratio}, timing: {lr_drop_epoch}')
+    print('lr schedule: {}, timing: {}'.format(lr_drop_ratio, lr_drop_epoch))
 
     def lr_drop(trainer):
         trainer.updater.get_optimizer('main').lr *= lr_drop_ratio
