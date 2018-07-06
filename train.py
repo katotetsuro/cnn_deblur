@@ -139,7 +139,7 @@ def main():
                                               'model_{.updater.epoch}.npz'), trigger=(1, 'epoch'))
 
     # Write a log of evaluation statistics for each epoch
-    trainer.extend(extensions.LogReport(trigger=(100, 'iteration')))
+    trainer.extend(extensions.LogReport(trigger=(1, 'iteration')))
 
     # Print selected entries of the log to stdout
     # Here "main" refers to the target link of the "main" optimizer again, and
@@ -148,7 +148,7 @@ def main():
     # either the updater or the evaluator.
     trainer.extend(extensions.PrintReport(
         ['epoch', 'lr', 'main/loss', 'validation/main/loss',
-         'main/accuracy', 'validation/main/accuracy', 'elapsed_time']), trigger=(100, 'iteration'))
+         'main/accuracy', 'validation/main/accuracy', 'elapsed_time']), trigger=(1, 'iteration'))
 
     # Print a progress bar to stdout
     trainer.extend(extensions.ProgressBar())
