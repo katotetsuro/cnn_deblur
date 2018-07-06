@@ -131,8 +131,8 @@ def main():
     trainer.extend(extensions.dump_graph('main/loss'))
 
     # Take a snapshot at each epoch
-    trainer.extend(extensions.snapshot(model.predictor,
-                                       'model_{.updater.epoch}.npz'), trigger=(1, 'epoch'))
+    trainer.extend(extensions.snapshot_object(model.predictor,
+                                              'model_{.updater.epoch}.npz'), trigger=(1, 'epoch'))
 
     # Write a log of evaluation statistics for each epoch
     trainer.extend(extensions.LogReport(trigger=(100, 'iteration')))
