@@ -14,4 +14,4 @@ class PairwiseDataset(chainer.dataset.DatasetMixin):
         return len(self.blur_images)
 
     def get_example(self, i):
-        return self.blur_images[i], self.sharp_images[i]
+        return self.blur_images[i] / 255, self.sharp_images[i] / 255
