@@ -62,6 +62,8 @@ def main():
                         help='Directory to output the result')
     parser.add_argument('--resume', '-r', default='',
                         help='Resume the training from snapshot')
+    parser.add_argument('--grad-clip', type=float, default=0.1,
+                        help='')
     args = parser.parse_args()
 
     print('GPU: {}'.format(args.gpu))
@@ -84,6 +86,8 @@ def main():
     optimizer = chainer.optimizers.MomentumSGD(args.learnrate)
     optimizer.setup(model)
     optimizer.add_hook(chainer.optimizer.WeightDecay(5e-4))
+    optimizer.add_hook(
+        chainer.optimizer_hooks.GradientClipping(args.grad_clip))
 
     base_dir = 'data/blurred_sharp'
     train_data = pairwise_dataset.PairwiseDataset(blur_image_list=str(Path(base_dir).joinpath('train_blur_images.txt')),
